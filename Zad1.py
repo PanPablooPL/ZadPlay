@@ -35,15 +35,12 @@ def test_login_and_add_to_cart(browser_context):
     page.click('text=Cart')
 
     try:
-        # Wait for the cart items to be present
         page.wait_for_selector('p.desc', timeout=30000)
 
-        # Check if any item contains the text "Quantity:"
         cart_items = page.locator('p.desc')
         quantity_found = cart_items.count() > 0
 
         if quantity_found:
-            # Take a screenshot of the first cart item
             cart_items.first.screenshot(path="cart_item_screenshot.png")
             print(f"Screenshot of the cart item saved as 'cart_item_screenshot.png'")
         else:
